@@ -93,3 +93,37 @@ export const getCurrentStock = (itemId) => {
   return stock
 }
 
+// User Management functions
+export const getUsers = () => {
+  const users = localStorage.getItem('pos_users')
+  return users ? JSON.parse(users) : []
+}
+
+export const saveUsers = (users) => {
+  localStorage.setItem('pos_users', JSON.stringify(users))
+}
+
+export const getCurrentUser = () => {
+  const user = localStorage.getItem('pos_current_user')
+  return user ? JSON.parse(user) : null
+}
+
+export const setCurrentUser = (user) => {
+  if (user) {
+    localStorage.setItem('pos_current_user', JSON.stringify(user))
+  } else {
+    localStorage.removeItem('pos_current_user')
+  }
+}
+
+// Default permissions structure
+export const defaultPermissions = {
+  items: false,
+  stockPurchase: false,
+  stockReturn: false,
+  sale: false,
+  saleReturn: false,
+  closingStock: false,
+  users: false, // Only admin can manage users
+}
+
